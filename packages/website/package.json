@@ -1,5 +1,5 @@
 {
-  "name": "daily.news-website",
+  "name": "@daily.news/website",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -21,20 +21,19 @@
   "publishConfig": {
     "access": "public"
   },
-  "name": "crawl-core",
+  "name": "@daily.news/crawl",
   "author": "xdoer",
   "browserslist": [
     "> 5%"
   ],
-  "module": "dist/crawl-core.esm.js",
+  "module": "dist/crawl.esm.js",
   "dependencies": {
-    "puppeteer-core": "^13.5.1"
+    "@daily.news/crawl-juejin": "0.0.1"
   },
   "devDependencies": {
     "ts-lib": "^0.0.5",
     "tsdx": "^0.14.1",
     "tslib": "^2.2.0",
-    "typescript": "4.5.4",
-    "@types/puppeteer": "^5.4.5"
+    "typescript": "4.5.4"
   }
 }

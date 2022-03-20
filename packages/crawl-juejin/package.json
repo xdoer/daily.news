@@ -1,0 +1,40 @@
+{
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch --verbose",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "name": "@daily.news/crawl-juejin",
+  "author": "xdoer",
+  "browserslist": [
+    "> 5%"
+  ],
+  "module": "dist/crawl-juejin.esm.js",
+  "dependencies": {
+    "@daily.news/crawl-utils": "0.0.1",
+    "@daily.news/types": "0.0.1"
+  },
+  "devDependencies": {
+    "ts-lib": "^0.0.5",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.2.0",
+    "typescript": "4.5.4"
+  }
+}

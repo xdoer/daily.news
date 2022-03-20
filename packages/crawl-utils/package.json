@@ -1,0 +1,40 @@
+{
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch --verbose",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "name": "@daily.news/crawl-utils",
+  "author": "xdoer",
+  "browserslist": [
+    "> 5%"
+  ],
+  "module": "dist/crawl-utils.esm.js",
+  "dependencies": {
+    "puppeteer-core": "^13.5.1"
+  },
+  "devDependencies": {
+    "ts-lib": "^0.0.5",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.2.0",
+    "typescript": "4.5.4",
+    "@types/puppeteer": "^5.4.5"
+  }
+}

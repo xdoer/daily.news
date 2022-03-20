@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "license": "MIT",
+  "typings": "index.d.ts",
+  "engines": {
+    "node": ">=10"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "name": "@daily.news/types",
+  "author": "xdoer",
+  "dependencies": {
+    "@types/puppeteer": "^5.4.5"
+  }
+}
