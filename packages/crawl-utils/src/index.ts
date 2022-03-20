@@ -1,10 +1,9 @@
-import puppeteer from 'puppeteer-core'
+import { launch } from 'puppeteer-core'
 
 async function getBrowser() {
-  return puppeteer.launch({
-    executablePath:
-      '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge'
-  })
+  const executablePath =
+    '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge'
+  return launch({ executablePath })
 }
 
 export { getBrowser }

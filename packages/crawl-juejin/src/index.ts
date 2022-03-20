@@ -4,33 +4,25 @@ export default <Crawl>(() => {
   return {
     name: 'juejin',
     site: 'https://juejin.cn/',
-    strategy: [
+    strategies: [
       {
-        scene: 'javascript',
+        scene: 'frontend',
+        url: 'https://juejin.cn/frontend',
         async fn(page) {
-          await page.goto('https://www.baidu.com/')
-          return [
-            {
-              title: '',
-              image: '',
-              desc: '',
-              url: ''
-            }
-          ]
-        }
-      },
-      {
-        scene: 'java',
-        async fn(page) {
-          await page.goto('https://www.baidu.com/')
-          return [
-            {
-              title: '',
-              image: '',
-              desc: '',
-              url: ''
-            }
-          ]
+          return page.$$eval('.entry', (eles) =>
+            eles.map((ele) => {
+              const titleEle = ele.querySelector('.title')
+              const url = titleEle?.getAttribute('href')
+              const title = titleEle?.textContent
+
+              const cover = ele
+                .querySelector('.lazy.thumb')
+                ?.getAttribute('data-src')
+              const desc = ele.querySelector('.abstract')?.textContent
+
+              return { url, title, cover, desc }
+            })
+          )
         }
       }
     ]
