@@ -17,7 +17,7 @@ declare namespace DN {
   }
 
   interface CrawlResponseStrategy {
-    scene: string
+    tags: string[]
     url: string
     fn: CrawlResponseStrategyFn
   }

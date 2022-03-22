@@ -6,7 +6,7 @@ export default <Crawl>(() => {
     site: 'https://juejin.cn/',
     strategies: [
       {
-        scene: 'frontend',
+        tags: ['frontend'],
         url: 'https://juejin.cn/frontend',
         async fn(page) {
           return page.$$eval('.entry', (eles) =>
