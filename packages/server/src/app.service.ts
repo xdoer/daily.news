@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import crawl from '@daily.news/crawl'
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+  getHello() {
+    return crawl()
   }
 }
