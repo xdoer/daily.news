@@ -1,15 +1,13 @@
 import { getBrowser } from '@daily.news/crawl-utils'
-import { Crawl, CrawlResponseStrategy } from '@daily.news/types'
+import { CrawlExt } from '@daily.news/types'
 import juejin from '@daily.news/crawl-juejin'
 
-const modules = [
-  juejin
-]
+const modules = [juejin]
 
 export default async function main() {
   const browser = await getBrowser()
 
-  async function getPage(strategy: CrawlResponseStrategy) {
+  async function getPage(strategy: CrawlExt.CrawlResponseStrategy) {
     const { fn, url, tags } = strategy
     const page = await browser.newPage()
     await page.goto(url)
@@ -18,7 +16,7 @@ export default async function main() {
     return { tags, url, data }
   }
 
-  async function crawl(fn: Crawl) {
+  async function crawl(fn: CrawlExt.Main) {
     const { strategies, ...rest } = await fn(browser as any)
     return { ...rest, strategies: await Promise.all(strategies.map(getPage)) }
   }

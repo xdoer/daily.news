@@ -1,6 +1,6 @@
-import { Crawl } from '@daily.news/types'
+import { CrawlExt } from '@daily.news/types'
 
-export default <Crawl>(() => {
+export default <CrawlExt.Main>(() => {
   return {
     name: 'juejin',
     site: 'https://juejin.cn/',
@@ -14,13 +14,14 @@ export default <Crawl>(() => {
               const titleEle = ele.querySelector('.title')
               const url = titleEle?.getAttribute('href')
               const title = titleEle?.textContent
+              const urlPrefix = 'https://juejin.cn'
 
               const cover = ele
                 .querySelector('.lazy.thumb')
                 ?.getAttribute('data-src')
               const desc = ele.querySelector('.abstract')?.textContent
 
-              return { url, title, cover, desc }
+              return { url: urlPrefix + url, title, cover, desc }
             })
           )
         }
