@@ -29,6 +29,7 @@
   "module": "dist/crawl.esm.js",
   "dependencies": {
     "@daily.news/crawl-juejin": "0.0.1",
+    "@daily.news/crawl-utils": "0.0.1",
     "@daily.news/types": "0.0.1"
   },
   "devDependencies": {

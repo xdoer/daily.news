@@ -5,7 +5,7 @@ const SERVER = 'http://localhost:3001'
 const MOCK = 'http://localhost:3002'
 
 export const request = create({
-  baseURL: MOCK,
+  baseURL: MOCK
   // baseURL: SERVER,
 })
 
@@ -14,6 +14,7 @@ request.use(async (ctx, next) => {
   await next()
   const { status, data } = ctx.response
   if (status === 200) {
+    console.log(data)
     ctx.response.data = JSON.parse(data)
   }
 })

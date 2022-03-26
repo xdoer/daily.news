@@ -45,5 +45,7 @@ declare namespace DN {
     cover: string
     desc: string
     url: string
+    tags?: string[]
+    date?: string
   }
 }

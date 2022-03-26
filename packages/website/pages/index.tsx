@@ -1,4 +1,6 @@
 import { Box } from '@fower/react'
+import { Button } from 'antd'
+import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons'
 import Layout from '../components/Layout'
 import { useQuery } from '../utils'
 
@@ -16,28 +18,37 @@ export default function Home({}) {
             {strategies.map((strategy, i) => {
               const { data, url, tags } = strategy
               return (
-                <Box key={url} flex flexWrap>
+                <Box key={url} grid gridTemplateColumns-4 gap-10>
                   {data.map((i) => {
-                    const { title, url, desc, cover } = i
+                    const { title, url, cover, date, tags } = i
                     return (
                       <Box
                         key={url}
-                        square-300
-                        overflowHidden
-                        flexShrink-0
-                        px-5
-                        py-10
+                        px-10
+                        pt-10
+                        pb-50
                         m-5
                         bgWhite
+                        relative
                         rounded-10
                         shadowMedium
+                        shadowLarge--hover
                         onClick={() => window.open(url)}
                       >
-                        <Box ml-10>
-                          <Box textXL fontBold>
-                            {title}
-                          </Box>
-                          <Box gray800>{desc}</Box>
+                        <Box as="img" src={cover} w-100p h-150 rounded-10></Box>
+                        <Box textXL fontBold className="ellipsis">
+                          {title}
+                        </Box>
+                        <Box text-10 flex>
+                          {tags.map((tag) => (
+                            <Box key={tag} mr-5>
+                              {tag}
+                            </Box>
+                          ))}
+                        </Box>
+                        <Box bottom-10 absolute>
+                          <Button type="primary" icon={<ArrowUpOutlined />} />
+                          <Button type="primary" icon={<ArrowDownOutlined />} />
                         </Box>
                       </Box>
                     )
