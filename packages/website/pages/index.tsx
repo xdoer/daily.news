@@ -1,10 +1,5 @@
 import { Box } from '@fower/react'
 import { Button } from 'antd'
-import {
-  HeartOutlined,
-  ArrowDownOutlined,
-  HeartFilled
-} from '@ant-design/icons'
 import Layout from '../components/Layout'
 import { useQuery } from '../utils'
 
@@ -37,7 +32,6 @@ export default function Home({}) {
                         rounded-10
                         shadowMedium
                         shadowLarge--hover
-                        onClick={() => window.open(url)}
                       >
                         <Box
                           flex
@@ -45,7 +39,7 @@ export default function Home({}) {
                           mb-10
                           justifyContent="space-between"
                         >
-                          <Box as="img" src={logo} circle8 mr-10></Box>
+                          <Box as="img" src={logo} circle8 mr-10 />
                           <Box text-10 gray500>
                             {date}
                           </Box>
@@ -57,7 +51,8 @@ export default function Home({}) {
                           h-150
                           rounded-10
                           mb-10
-                        ></Box>
+                          onClick={() => window.open(url)}
+                        />
                         <Box textSM fontBold className="ellipsis" mb-10 h-50>
                           {title}
                         </Box>
@@ -68,9 +63,18 @@ export default function Home({}) {
                             </Box>
                           ))}
                         </Box>
-                        <Box bottom-10 absolute>
+                        <Box
+                          bottom-10
+                          absolute
+                          left0
+                          right0
+                          flex
+                          justifyContent="space-around"
+                          text-10
+                        >
                           <Button>点赞</Button>
                           <Button>收藏</Button>
+                          <Button>稍后读</Button>
                         </Box>
                       </Box>
                     )
