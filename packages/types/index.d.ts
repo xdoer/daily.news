@@ -10,6 +10,7 @@ declare namespace DN {
     }
 
     interface CrawlResponse {
+      logo: string
       name: string
       site: string
       strategies: CrawlResponseStrategy[]
@@ -36,6 +37,7 @@ declare namespace DN {
     interface CrawlResponse {
       name: string
       site: string
+      logo: string
       strategies: CrawlResponseStrategy[]
     }
   }

@@ -6,7 +6,7 @@ export default function Layout({ children }) {
       <Box
         w-100p
         h-50
-        border
+        borderBottom
         flex
         justifyContent="space-between"
         alignItems="center"
@@ -16,7 +16,7 @@ export default function Layout({ children }) {
         <Box>xdoer</Box>
       </Box>
       <Box flex flex-1>
-        <Box h-100p w-200 p-20 border-1>
+        <Box h-100p w-200 p-20>
           左侧导航
         </Box>
         <Box flex-1 p-20 h="calc(100vh - 50px)" overflow="scroll" bgGray100>

@@ -1,6 +1,10 @@
 import { Box } from '@fower/react'
 import { Button } from 'antd'
-import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons'
+import {
+  HeartOutlined,
+  ArrowDownOutlined,
+  HeartFilled
+} from '@ant-design/icons'
 import Layout from '../components/Layout'
 import { useQuery } from '../utils'
 
@@ -11,7 +15,7 @@ export default function Home({}) {
   return (
     <Layout>
       {list.map((item) => {
-        const { name, strategies } = item
+        const { name, strategies, logo } = item
         return (
           <Box key={name}>
             <Box>{name}</Box>
@@ -35,11 +39,29 @@ export default function Home({}) {
                         shadowLarge--hover
                         onClick={() => window.open(url)}
                       >
-                        <Box as="img" src={cover} w-100p h-150 rounded-10></Box>
-                        <Box textXL fontBold className="ellipsis">
+                        <Box
+                          flex
+                          alignItems="center"
+                          mb-10
+                          justifyContent="space-between"
+                        >
+                          <Box as="img" src={logo} circle8 mr-10></Box>
+                          <Box text-10 gray500>
+                            {date}
+                          </Box>
+                        </Box>
+                        <Box
+                          as="img"
+                          src={cover}
+                          w-100p
+                          h-150
+                          rounded-10
+                          mb-10
+                        ></Box>
+                        <Box textSM fontBold className="ellipsis" mb-10 h-50>
                           {title}
                         </Box>
-                        <Box text-10 flex>
+                        <Box text-10 flex gray500>
                           {tags.map((tag) => (
                             <Box key={tag} mr-5>
                               {tag}
@@ -47,8 +69,8 @@ export default function Home({}) {
                           ))}
                         </Box>
                         <Box bottom-10 absolute>
-                          <Button type="primary" icon={<ArrowUpOutlined />} />
-                          <Button type="primary" icon={<ArrowDownOutlined />} />
+                          <Button>点赞</Button>
+                          <Button>收藏</Button>
                         </Box>
                       </Box>
                     )
