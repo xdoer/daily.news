@@ -1,9 +1,11 @@
-import { NestFactory } from '@nestjs/core';
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UsersModule } from './user/user.module';
-import { PostModule } from './post/post.module';
+import { NestFactory } from '@nestjs/core'
+import { Module } from '@nestjs/common'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { UsersModule } from './user/user.module'
+import { PostModule } from './post/post.module'
+import { HttpExceptionFilter } from './core/httpException.filter'
+import { TransformInterceptor } from './core/transform.interceptor'
 
 @Module({
   imports: [
@@ -27,10 +29,13 @@ import { PostModule } from './post/post.module';
     PostModule,
   ],
 })
-class AppModule { }
+class AppModule {}
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3001);
+  const app = await NestFactory.create(AppModule)
+  app
+    .useGlobalFilters(new HttpExceptionFilter())
+    .useGlobalInterceptors(new TransformInterceptor())
+  await app.listen(3001)
 }
-bootstrap();
+bootstrap()
