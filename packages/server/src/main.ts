@@ -1,7 +1,8 @@
 import { NestFactory } from '@nestjs/core'
-import { Module } from '@nestjs/common'
+import { Module, ValidationPipe } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConfigModule, ConfigService } from '@nestjs/config'
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { UsersModule } from './user/user.module'
 import { PostModule } from './post/post.module'
 import { HttpExceptionFilter } from './core/httpException.filter'
@@ -33,9 +34,21 @@ class AppModule {}
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
+
+  const config = new DocumentBuilder()
+    .setTitle('管理后台')
+    .setDescription('管理后台接口文档')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build()
+
+  const document = SwaggerModule.createDocument(app, config)
+  SwaggerModule.setup('docs', app, document)
+
   app
-    .useGlobalFilters(new HttpExceptionFilter())
     .useGlobalInterceptors(new TransformInterceptor())
-  await app.listen(3001)
+    .useGlobalPipes(new ValidationPipe())
+    .useGlobalFilters(new HttpExceptionFilter())
+    .listen(3001)
 }
 bootstrap()

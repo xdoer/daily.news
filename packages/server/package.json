@@ -5,7 +5,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -28,7 +28,11 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.4.0",
     "@nestjs/config": "^2.0.0",
-    "@daily.news/crawl": "0.0.1"
+    "@daily.news/crawl": "0.0.1",
+    "class-validator": "0.13.2",
+    "class-transformer": "^0.5.1",
+    "@nestjs/swagger": "^5.2.1",
+    "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.1.3",

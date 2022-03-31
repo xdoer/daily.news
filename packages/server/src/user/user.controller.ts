@@ -5,8 +5,8 @@ import { UsersService } from './user.service'
 export class UsersController {
   constructor(private readonly userService: UsersService) { }
 
-  @Get()
-  getHello(@Query() query) {
+  @Get('user')
+  user(@Query() query) {
     return this.userService.findOne(query.id)
   }
 }
