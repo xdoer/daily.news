@@ -1,18 +1,16 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()
-export class Post {
+export class Website {
   @PrimaryGeneratedColumn()
   id: string
 
   @Column()
-  uid: string
-
-  // 网站 id
-  @Column()
-  wid: string
-
-  // 文章名称
-  @Column()
   name: string
+
+  @Column()
+  login: string
+
+  @Column()
+  site: string
 }

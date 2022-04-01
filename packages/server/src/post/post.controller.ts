@@ -1,11 +1,11 @@
 import { Controller, Get, Query } from '@nestjs/common'
 import { PostService } from './post.service'
-import { PostsReqDTO } from 'src/dto/post/posts-req.dto'
 import { ApiOperation } from '@nestjs/swagger'
+import { QueryPostsDTO } from './dto/query-posts.dto'
 
 @Controller()
 export class PostController {
-  constructor(private readonly postService: PostService) {}
+  constructor(private readonly postService: PostService) { }
 
   @Get('post')
   post(@Query() query) {
@@ -14,7 +14,7 @@ export class PostController {
 
   @Get('posts')
   @ApiOperation({ summary: '查询文章列表' })
-  posts(@Query() query: PostsReqDTO) {
-    return { a: 1 }
+  posts(@Query() query: QueryPostsDTO) {
+    return this.postService.find(query)
   }
 }

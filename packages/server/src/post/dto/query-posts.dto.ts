@@ -1,12 +1,12 @@
 import { IsNotEmpty } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
 
-export class PostsReqDTO {
+export class QueryPostsDTO {
   @ApiProperty({ description: '分页页码' })
   @IsNotEmpty({ message: '请传入页码' })
-  readonly pageNo: number
+  readonly skip: number
 
   @ApiProperty({ description: '分页页数' })
   @IsNotEmpty({ message: '请传入页数' })
-  readonly pageSize: number
+  readonly take: number
 }

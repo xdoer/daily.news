@@ -9,4 +9,4 @@ import { PostService } from './post.service'
   providers: [PostService],
   controllers: [PostController],
 })
-export class PostModule {}
+export class PostModule { }
