@@ -1,27 +1,27 @@
-import { getBrowser } from '@daily.news/crawl-utils'
 import { CrawlExt } from '@daily.news/types'
 import juejin from '@daily.news/crawl-juejin'
+import { getBrowser } from '@daily.news/crawl-utils'
 
-const modules = [juejin]
+class Crawl {
+  browser!: CrawlExt.Browser
+  modules: CrawlExt.Main[] = [juejin]
 
-export default async function main() {
-  const browser = await getBrowser()
+  async init() {
+    this.browser = (await getBrowser()) as any
+  }
 
-  async function getPage(strategy: CrawlExt.CrawlResponseStrategy) {
+  async fetchMeta(strategy: CrawlExt.CrawlResponseStrategy) {
     const { fn, url, tags } = strategy
-    const page = await browser.newPage()
+    const page = await this.browser.newPage()
     await page.goto(url)
-    const data = await fn(page as any)
+    const data = await fn(page)
     await page.close()
     return { tags, url, data }
   }
 
-  async function crawl(fn: CrawlExt.Main) {
-    const { strategies, ...rest } = await fn(browser as any)
-    return { ...rest, strategies: await Promise.all(strategies.map(getPage)) }
+  close() {
+    this.browser.close()
   }
-
-  const res = await Promise.all(modules.map(crawl))
-  await browser.close()
-  return res
 }
+
+export default new Crawl()

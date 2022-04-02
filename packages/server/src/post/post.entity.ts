@@ -8,11 +8,6 @@ export class Post {
   @Column()
   uid: string
 
-  // 网站 id
-  @Column()
-  wid: string
-
-  // 文章名称
   @Column()
   name: string
 }

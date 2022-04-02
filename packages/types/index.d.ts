@@ -5,21 +5,26 @@ export as namespace DN
 
 declare namespace DN {
   namespace CrawlExt {
+
+    type Browser = Puppeteer.Browser
+    type Page = Puppeteer.Page
+
     interface Main {
-      (puppeteer: Puppeteer.Browser): CrawlResponse
+      (browser?: Browser): CrawlResponse
     }
 
     interface CrawlResponse {
       logo: string
       name: string
       site: string
+      update: number
       strategies: CrawlResponseStrategy[]
     }
 
     interface CrawlResponseStrategy {
       tags: string[]
       url: string
-      fn: (page: Puppeteer.Page) => Promise<CrawlMeta[]>
+      fn: (page: Page) => Promise<CrawlMeta[]>
     }
   }
 
@@ -38,6 +43,7 @@ declare namespace DN {
       name: string
       site: string
       logo: string
+      update: string
       strategies: CrawlResponseStrategy[]
     }
   }

@@ -7,7 +7,6 @@ import { UsersModule } from './user/user.module'
 import { PostModule } from './post/post.module'
 import { HttpExceptionFilter } from './core/httpException.filter'
 import { TransformInterceptor } from './core/transform.interceptor'
-import { WebsiteModule } from './website/website.module'
 
 @Module({
   imports: [
@@ -29,10 +28,9 @@ import { WebsiteModule } from './website/website.module'
     }),
     UsersModule,
     PostModule,
-    WebsiteModule
   ],
 })
-class AppModule { }
+class AppModule {}
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
