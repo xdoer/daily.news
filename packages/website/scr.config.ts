@@ -40,7 +40,15 @@ const config: Config = {
         }
       ],
       subProcess: true
-    }
+    },
+    {
+      module: '@prequest/response-types-server',
+      args: [
+        {
+          port: 10010,
+        },
+      ],
+    },
   ]
 }
 

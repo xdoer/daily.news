@@ -5,7 +5,7 @@ export default <CrawlExt.Main>(() => {
     name: 'juejin',
     site: 'https://juejin.cn/',
     logo: 'https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/6c61ae65d1c41ae8221a670fa32d05aa.svg',
-    update: 3,
+    updateInterval: 3,
     strategies: [
       {
         tags: ['frontend'],
@@ -23,7 +23,9 @@ export default <CrawlExt.Main>(() => {
 
               // cover
               const coverEle = ele.querySelector('.lazy.thumb')
-              const cover = coverEle?.getAttribute('data-src')
+              const cover =
+                coverEle?.getAttribute('src') ||
+                coverEle?.getAttribute('data-src')
 
               // desc
               const descEle = ele.querySelector('.abstract')

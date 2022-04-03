@@ -21,7 +21,7 @@ export class CrawlService {
 
   async update() {
     for await (const module of crawl.modules) {
-      const { name, site, logo, update } = module()
+      const { name, site, logo, updateInterval } = module()
       let website = await this.websiteRepository.findOne({ name })
 
       if (!website) {
@@ -29,20 +29,22 @@ export class CrawlService {
           name,
           site,
           logo,
-          update,
+          updateInterval,
         })
         website = await this.websiteRepository.save(website)
       }
 
-      // await this.fetch(module(), website)
+      await this.fetch(module(), website)
     }
   }
 
   async fetch(module: DN.CrawlExt.CrawlResponse, website: Website) {
-    const { update, strategies } = module
+    const { updateInterval, strategies } = module
+
+    const hours = updateInterval * 1000 * 60 * 60
 
     // 需要更新数据
-    if (Date.now() - website.updatedAt > update) {
+    if (Date.now() - website.updatedAt > hours) {
       await crawl.init()
 
       for await (const strategy of strategies) {
@@ -59,36 +61,51 @@ export class CrawlService {
             url,
           } = article
 
-          // 存储标签
-          const tags = _tags.map((tag) => {
-            const __tag = new Tag()
-            __tag.name = tag
-            return __tag
-          })
+          let tags = []
+          for await (const _tag of _tags) {
+            const __tag = await this.tagRepository.findOne({ name: _tag })
+            if (!__tag) {
+              const tag = new Tag()
+              tag.name = _tag
+              await this.tagRepository.save(tag)
+              tags.push(tag)
+            } else {
+              tags.push(__tag)
+            }
+          }
 
-          await this.tagRepository.save(tags)
 
-          // 存储作者
-          const author = new Author()
-          author.name = _author
-          await this.authorRepository.save(author)
+          let author = await this.authorRepository.findOne({ name: _author })
+          if (!author) {
+            // 存储作者
+            const __author = new Author()
+            __author.name = _author
+            await this.authorRepository.save(__author)
+            author = __author
+          }
 
-          // 存储文章
-          const post = new Post()
-          post.wid = website.id
-          post.cover = cover || ''
-          post.title = title || ''
-          post.desc = desc || ''
-          post.url = url
-          post.date = date
-          post.tags = tags
-          post.author = author
+          const post = await this.postRepository.findOne({ url })
 
-          this.postRepository.save(post)
+          if (!post) {
+            // 存储文章
+            const post = new Post()
+            post.website = website
+            post.cover = cover || ''
+            post.title = title || ''
+            post.desc = desc || ''
+            post.url = url
+            post.date = date
+            post.tags = tags
+            post.author = author
+
+            await this.postRepository.save(post)
+          }
         }
       }
 
       await crawl.close()
     }
+
+    await this.websiteRepository.update(website.id, { updatedAt: () => 'CURRENT_TIMESTAMP' })
   }
 }

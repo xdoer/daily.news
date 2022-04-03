@@ -17,7 +17,7 @@ declare namespace DN {
       logo: string
       name: string
       site: string
-      update: number
+      updateInterval: number
       strategies: CrawlResponseStrategy[]
     }
 
@@ -43,7 +43,7 @@ declare namespace DN {
       name: string
       site: string
       logo: string
-      update: string
+      updateInterval: string
       strategies: CrawlResponseStrategy[]
     }
   }
@@ -57,4 +57,57 @@ declare namespace DN {
     date?: string
     author?: string
   }
+
+  namespace Api {
+
+    interface Author {
+      id: number
+      name: string
+    }
+
+    interface Tags {
+      id: number
+      name: string
+    }
+
+    interface Website {
+      id: number
+      name: string
+      logo: string
+      site: string
+      updateInterval: number
+      updatedAt: string
+      createdAt: string
+    }
+
+    interface Data {
+      id: number
+      title: string
+      cover: string
+      url: string
+      date: string
+      desc: string
+      updatedAt: string
+      createdAt: string
+      author: Author
+      tags: Tags[]
+      website: Website
+    }
+
+
+    interface Posts {
+      id: number
+      title: string
+      cover: string
+      url: string
+      date: string
+      desc: string
+      updatedAt: string
+      createdAt: string
+      author: Author
+      tags: Tags[]
+      website: Website
+    }
+  }
 }
+

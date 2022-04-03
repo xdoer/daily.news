@@ -1,10 +1,10 @@
+import { Website } from '../website/website.entity'
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   ManyToMany,
   JoinTable,
-  OneToOne,
   ManyToOne,
 } from 'typeorm'
 import { Author } from './author.entity'
@@ -15,8 +15,8 @@ export class Post {
   @PrimaryGeneratedColumn()
   id: string
 
-  @Column()
-  wid: string
+  @ManyToOne(() => Website)
+  website: Website
 
   @Column()
   title: string

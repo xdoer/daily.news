@@ -15,7 +15,7 @@ export class Website {
   site: string
 
   @Column()
-  update: number
+  updateInterval: number
 
   @Column({
     type: 'timestamp',
