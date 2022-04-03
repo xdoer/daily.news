@@ -7,10 +7,13 @@ import { Post } from './post.entity'
 export class PostService {
   constructor(
     @InjectRepository(Post) private postsRepository: Repository<Post>,
-  ) { }
+  ) {}
 
   find(opt?: FindManyOptions<Post>): Promise<Post[]> {
-    return this.postsRepository.find(opt)
+    return this.postsRepository.find({
+      ...opt,
+      relations: ['author', 'tags'],
+    })
   }
 
   findOne(id: string): Promise<Post> {

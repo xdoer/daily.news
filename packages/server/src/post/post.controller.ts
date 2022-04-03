@@ -5,7 +5,7 @@ import { QueryPostsDTO } from './dto/query-posts.dto'
 
 @Controller()
 export class PostController {
-  constructor(private readonly postService: PostService) { }
+  constructor(private readonly postService: PostService) {}
 
   @Get('post')
   post(@Query() query) {

@@ -7,6 +7,8 @@ import { UsersModule } from './user/user.module'
 import { PostModule } from './post/post.module'
 import { HttpExceptionFilter } from './core/httpException.filter'
 import { TransformInterceptor } from './core/transform.interceptor'
+import { WebsiteModule } from './website/website.module'
+import { CrawlModule } from './crawl/crawl.module'
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import { TransformInterceptor } from './core/transform.interceptor'
     }),
     UsersModule,
     PostModule,
+    WebsiteModule,
+    CrawlModule,
   ],
 })
 class AppModule {}

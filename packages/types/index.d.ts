@@ -55,5 +55,6 @@ declare namespace DN {
     url: string
     tags?: string[]
     date?: string
+    author?: string
   }
 }

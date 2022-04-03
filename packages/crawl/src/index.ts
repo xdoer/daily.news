@@ -7,7 +7,7 @@ class Crawl {
   modules: CrawlExt.Main[] = [juejin]
 
   async init() {
-    this.browser = (await getBrowser()) as any
+    this.browser = this.browser || ((await getBrowser()) as any)
   }
 
   async fetchMeta(strategy: CrawlExt.CrawlResponseStrategy) {

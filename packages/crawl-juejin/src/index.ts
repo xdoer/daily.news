@@ -11,12 +11,11 @@ export default <CrawlExt.Main>(() => {
         tags: ['frontend'],
         url: 'https://juejin.cn/frontend',
         async fn(page) {
-          return page.$$eval('.entry', (els) =>
-            els.map((ele) => {
-              function htmlFormat(text = '') {
-                return text.replace(/(\s|\t|\n)+/g, '')
-              }
-
+          return page.$$eval('.entry', (els) => {
+            function htmlFormat(text = '') {
+              return text.replace(/(\s|\t|\n)+/g, '')
+            }
+            return els.map((ele) => {
               // title
               const titleEle = ele.querySelector('.title')
               const url = titleEle?.getAttribute('href')
@@ -40,16 +39,21 @@ export default <CrawlExt.Main>(() => {
                 htmlFormat(ele.textContent || '')
               )
 
+              // 作者
+              const authorEle = ele.querySelector('.user-message')
+              const author = htmlFormat(authorEle?.textContent || '')
+
               return {
                 url: 'https://juejin.cn' + url,
                 title,
                 cover,
                 desc,
                 date,
-                tags
+                tags,
+                author
               }
             })
-          )
+          })
         }
       }
     ]
