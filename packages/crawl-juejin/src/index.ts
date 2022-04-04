@@ -23,9 +23,7 @@ export default <CrawlExt.Main>(() => {
 
               // cover
               const coverEle = ele.querySelector('.lazy.thumb')
-              const cover =
-                coverEle?.getAttribute('src') ||
-                coverEle?.getAttribute('data-src')
+              const cover = coverEle?.getAttribute('data-src')
 
               // desc
               const descEle = ele.querySelector('.abstract')

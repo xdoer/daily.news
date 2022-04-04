@@ -26,10 +26,17 @@ img {
   display: block;
 }
 
-.ellipsis {
+.ellipsis-2 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ellipsis {
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }

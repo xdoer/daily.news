@@ -108,6 +108,12 @@ declare namespace DN {
       tags: Tags[]
       website: Website
     }
+
+    interface QueryPosts {
+      totalItems: number
+      haveNext: boolean
+      data: Posts[]
+    }
   }
 }
 

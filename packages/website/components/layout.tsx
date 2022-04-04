@@ -1,6 +1,7 @@
 import { Box } from '@fower/react'
+import { forwardRef, LegacyRef } from 'react'
 
-export default function Layout({ children }) {
+export default forwardRef(({ children }, ref: LegacyRef<HTMLDivElement>) => {
   return (
     <Box as="main" w-100vw h-100vh flex flexDirection="column">
       <Box
@@ -19,10 +20,17 @@ export default function Layout({ children }) {
         <Box h-100p w-200 p-20>
           左侧导航
         </Box>
-        <Box flex-1 p-20 h="calc(100vh - 50px)" overflow="scroll" bgGray100>
+        <Box
+          flex-1
+          p-20
+          h="calc(100vh - 50px)"
+          overflow="scroll"
+          bgGray100
+          ref={ref}
+        >
           {children}
         </Box>
       </Box>
     </Box>
   )
-}
+})

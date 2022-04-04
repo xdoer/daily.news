@@ -4,7 +4,7 @@
 
 declare module '@prequest/types' {
   export interface PQResponse<T> {
-    data: T
+    result: T
     errorCode: string
     errorMessage: string
     success: boolean

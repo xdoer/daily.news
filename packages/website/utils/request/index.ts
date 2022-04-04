@@ -7,7 +7,7 @@ const MOCK = 'http://localhost:3002'
 
 export const request = create({
   // baseURL: MOCK
-  baseURL: SERVER,
+  baseURL: SERVER
 })
 
 const typesGeneratorMiddleware = generatorMiddlewareWrapper({
@@ -25,21 +25,18 @@ const typesGeneratorMiddleware = generatorMiddlewareWrapper({
       data: res,
       outPutName,
       interfaceName,
-      overwrite: false,
+      overwrite: false
     }
-  },
+  }
 })
 
-
 // parse response
-request
-  .use(typesGeneratorMiddleware)
-  .use(async (ctx, next) => {
-    await next()
-    const { status, data } = ctx.response
-    if (status === 200) {
-      ctx.response = JSON.parse(data)
-    }
-  })
+request.use(typesGeneratorMiddleware).use(async (ctx, next) => {
+  await next()
+  const { status, data } = ctx.response
+  if (status === 200) {
+    ctx.response = JSON.parse(data)
+  }
+})
 
 export const useQuery = createQueryHook(request)
