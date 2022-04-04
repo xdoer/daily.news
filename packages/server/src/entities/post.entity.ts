@@ -1,4 +1,4 @@
-import { Website } from '../website/website.entity'
+import { Website } from './website.entity'
 import {
   Entity,
   Column,

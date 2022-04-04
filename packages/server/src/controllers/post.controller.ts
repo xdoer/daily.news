@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common'
-import { PostService } from './post.service'
+import { PostService } from '../service/post.service'
 import { ApiOperation } from '@nestjs/swagger'
-import { QueryPostsDTO } from './dto/query-posts.dto'
+import { QueryPostsDTO } from '../dtos'
 
 @Controller()
 export class PostController {
@@ -15,6 +15,6 @@ export class PostController {
   @Get('posts')
   @ApiOperation({ summary: '查询文章列表' })
   posts(@Query() query: QueryPostsDTO) {
-    return this.postService.find(query)
+    return this.postService.paginate(query)
   }
 }

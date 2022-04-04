@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common'
-import { QueryWebsiteDTO } from './dto/query-website.dto'
-import { WebsiteService } from './website.service'
+import { QueryWebsiteDTO } from '../dtos'
+import { WebsiteService } from '../service'
 
 @Controller()
 export class WebsiteController {

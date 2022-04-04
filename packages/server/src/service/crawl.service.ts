@@ -1,12 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Website } from '../website/website.entity'
 import { Repository } from 'typeorm'
-import { Post } from '../post/post.entity'
 import crawl from '@daily.news/crawl'
-import { Tag } from '../post/tag.entity'
 import DN from '@daily.news/types'
-import { Author } from '../post/author.entity'
+import { Author, Tag, Website, Post } from '../entities'
 
 @Injectable()
 export class CrawlService {
@@ -74,7 +71,6 @@ export class CrawlService {
             }
           }
 
-
           let author = await this.authorRepository.findOne({ name: _author })
           if (!author) {
             // 存储作者
@@ -106,6 +102,8 @@ export class CrawlService {
       await crawl.close()
     }
 
-    await this.websiteRepository.update(website.id, { updatedAt: () => 'CURRENT_TIMESTAMP' })
+    await this.websiteRepository.update(website.id, {
+      updatedAt: () => 'CURRENT_TIMESTAMP',
+    })
   }
 }

@@ -3,12 +3,9 @@ import { Module, ValidationPipe } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
-import { UsersModule } from './user/user.module'
-import { PostModule } from './post/post.module'
 import { HttpExceptionFilter } from './core/httpException.filter'
 import { TransformInterceptor } from './core/transform.interceptor'
-import { WebsiteModule } from './website/website.module'
-import { CrawlModule } from './crawl/crawl.module'
+import { CrawlModule, WebsiteModule, PostModule, UsersModule } from './modules'
 
 @Module({
   imports: [

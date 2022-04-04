@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { FindManyOptions, Repository } from 'typeorm'
-import { Website } from './website.entity'
+import { Website } from '../entities'
 
 @Injectable()
 export class WebsiteService {
   constructor(
     @InjectRepository(Website) private websiteRepository: Repository<Website>,
-  ) { }
+  ) {}
 
   find(opt?: FindManyOptions<Website>): Promise<Website[]> {
     return this.websiteRepository.find(opt)
